@@ -33,67 +33,117 @@ $	sudo rosdep init
 $	rosdep update
 
 
-To start the ROS (master node)
+To start the ROS (master node):
+
 $	roscore
 
 # •	Preparing ROS:
 
 $	source /opt/ros/melodic/setup.bash
+
 Creating a workspace by using catkin_make:
+
 $	mkdir -p ~/catkin_ws/src
+
 $	cd ~/catkin_ws/
+
 $	catkin_make
+
 $	echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
 $	source ~/.bashrc
 
 # •	Installing the package arduino_robot_arm:
+
 Add the "arduino_robot_arm" package to "src" folder:
+
 $	cd ~/catkin_ws/src
+
 $	sudo apt install git
+
 $	git clone https://github.com/smart-methods/arduino_robot_arm.git
+
 Install all the dependencies:
+
 $	cd ~/catkin_ws
+
 $	rosdep install --from-paths src --ignore-src -r -y
+
 $	sudo apt-get install ros-melodic-moveit
+
 $	sudo apt-get install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
+
 $	sudo apt-get install ros-melodic-gazebo-ros-control joint-state-publisher
+
 $	sudo apt-get install ros-melodic-ros-controllers ros-melodic-ros-control
+
 $	sudo nano ~/.bashrc
-At the end of the (bashrc) file add the follwing line: 
+
+At the end of the (bashrc) file add the follwing line:
+
 (source /home/(your Ubuntu OS name) /catkin_ws/devel/setup.bash)
+
 Then press in order:
+
 ctrl + o (to write out)
+
 ENTER
+
 Ctrl + x (to exit)
 
+
 Compile the package using:
+
 $	catkin_make
+
+
 To run Rviz use this command:
+
 $	roslaunch robot_arm_pkg check_motors.launch
 
+
 # •	Using Arduino with ROS:
+
 Download Arduino IDE (linux version) Inside the Ubuntu via: https://www.arduino.cc/en/Main/Software
 
 Install rosserial using:
+
 $	sudo apt-get install ros-melodic-rosserial-arduino
+
 $	sudo apt-get install ros-melodic-rosserial
 
 Install ros_lib into the Arduino Environment using:
+
 $	cd <Arduino>/libraries
+ 
 $	rm -rf ros_lib
+ 
 $	rosrun rosserial_arduino make_libraries.py .
+ 
 Controlling the motors in simulation:
+ 
 $	roslaunch robot_arm_pkg check_motors.launch
+ 
 $	roslaunch robot_arm_pkg check_motors_gazebo.launch
+ 
 $	rosrun robot_arm_pkg joint_states_to_gazebo.py
+ 
 You may need to change the permission: 
+ 
 $	cd catkin/src/arduino_robot_arm/robot_arm_pkg/scripts
+ 
 $	sudo chmod +x joint_states_to_gazebo.py
+ 
 Creating the manipulation by using MoveIt:
+ 
 $	roslaunch moveit_setup_assistant setup_assistant.launch
+ 
 To run MoveIt (Rviz):
+ 
 $	roslaunch moveit_pkg demo.launch
+ 
 To run MoveIt (with Gazebo):
+ 
 $	roslaunch moveit_pkg demo_gazebo.launch
 
 
