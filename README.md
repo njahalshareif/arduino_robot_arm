@@ -3,25 +3,35 @@ Download ROS and run the robotic arm on Rviz and Gazebo
 
 # In this repository, we will go through these steps to download ROS and run the robotic arm on Rviz and Gazebo:
 Before installing ROS we need to download VMware and Ubuntu 18.04:
-## 1.	Download VMware via: https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html
+#### 1.	Download VMware via: https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html
  After downloading VMware you need to activate the program by typing this serial number: 
 ZF3R0-FHED2-M80TY-8QYGC-NPKYF
-## 2.	Download Ubuntu 18.04 desktop image via: https://releases.ubuntu.com/18.04/
+#### 2.	Download Ubuntu 18.04 desktop image via: https://releases.ubuntu.com/18.04/
 
 # •	Install ROS "melodic":
 Open the terminal and type these commands:
 
 $	sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
 $	sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 
+
 $	sudo apt update
+
 $	sudo apt install ros-melodic-desktop-full
+
 $	apt search ros-melodic
+
 $	echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+
 $	sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+
 $	sudo apt install python-rosdep
+
 $	sudo rosdep init
+
 $	rosdep update
+
 
 To start the ROS (master node)
 $	roscore
